@@ -1,0 +1,768 @@
+{
+  "version": "v1.1",
+  "updated": "2026-11-07",
+  "source_report": "/workspace/2026-11-06-grokbot-multimodal-capabilities-research/report.md",
+  "sections": [
+    {
+      "id": "video-understanding",
+      "title": "Video understanding",
+      "key_limit": "~13 min complete; longer samples fail or degrade.",
+      "note": "Speech transcription, speaker separation and mixed-language results here were tested on VIDEO files, not pure audio. These are sample-specific results, not universal duration guarantees.",
+      "rows": [
+        {
+          "capability": "Short video: visuals and on-screen text",
+          "status": "Supported",
+          "limit": "Actions, burned-in subtitles, station logos, location/date captions, name plates and logos read; end music heard at 00:36 in the Mandarin clip.",
+          "tested_with": "Video files: OGV 14.68 s / 1280×720 (Theora/Vorbis); WebM 40.86 s / 1920×1080 (VP9/Opus).",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "§2.2; Appendix B",
+          "how_to_verify": "",
+          "updated": false
+        },
+        {
+          "capability": "Transcription accuracy, English short clip",
+          "status": "Supported",
+          "limit": "14.7 s Obama OGV: matches the official White House transcript word for word; only punctuation and sentence breaks differ.",
+          "tested_with": "Video file only: OGV 14.68 s, 2,642,028 B; 720p.",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "Appendices A.1, A.3, B",
+          "how_to_verify": "",
+          "updated": false
+        },
+        {
+          "capability": "Transcription accuracy, Mandarin short clip",
+          "status": "Supported",
+          "limit": "40.9 s 1080p WebM: matches the burned-in subtitles except fillers (“呃”) and repetitions; on-screen text also read.",
+          "tested_with": "Video file only: WebM 40.86 s, 16,814,611 B; VP9/Opus 1080p.",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "Appendices A.1, B",
+          "how_to_verify": "",
+          "updated": false
+        },
+        {
+          "capability": "Meeting video, ~13 min",
+          "status": "Supported",
+          "limit": "Fully readable with audio: 59.4 MB, ~12.9 min (776.64 s) multi-speaker congressional meeting; last perceived timestamp 12:56.",
+          "tested_with": "Video file: OGV 776.64 s (~12.9 min), 59,414,918 B; Theora 400×300 + Vorbis.",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "Appendices A.4, C.3",
+          "how_to_verify": "",
+          "updated": false
+        },
+        {
+          "capability": "Speaker diarization (13 min meeting)",
+          "status": "Supported",
+          "limit": "5 names/roles identified: Issa (chair), Cummings (ranking member), female clerk, Mr. Burton, Mr. Davis, plus faint off-mic voice votes; name plates read. Accuracy against the official record unverified (no official transcript found).",
+          "tested_with": "Video file: OGV 776.64 s (~12.9 min), 59,414,918 B; Theora 400×300 + Vorbis.",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "Appendix C.3",
+          "how_to_verify": "",
+          "updated": false
+        },
+        {
+          "capability": "Mixed Chinese-English (intra-sentence)",
+          "status": "Supported",
+          "limit": "English terms inside Mandarin sentences recognised (Wikidata Taiwan, COSCUP 2022, OpenStreetMap, item, metadata); Traditional Chinese output; 2 speakers (off-screen announcer + main speaker). A transcript excerpt, not a verified full-length transcript.",
+          "tested_with": "Video file: WebM 1037.19 s (~17.3 min), 21,909,283 B; VP9 854×480 + Opus.",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "Appendix C.2",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "Meeting video, ~39 min: full understanding",
+          "status": "Unsupported",
+          "limit": "Confirmed failure on this sample: “Activity task failed” 2/2 (parallel run and solo retry). Not a claim that every 39 min video fails.",
+          "tested_with": "Video file: OGV 2359.36 s (~39.3 min), 185,655,408 B.",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "Appendix C.3",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "Meeting video, ~81 min: full understanding",
+          "status": "Unsupported",
+          "limit": "Confirmed incomplete in 1 run: first ~45 min only (last 44:59), ~150 frames (~1 frame/18 s), no audio; cannot transcribe or count speakers. This sample failed full audiovisual understanding.",
+          "tested_with": "Video file: OGV 4894.43 s (~81.6 min), 68,068,796 B.",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "Appendix C.3",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "Meeting video, ~143 min: full understanding",
+          "status": "Unsupported",
+          "limit": "Confirmed failure on this sample: “Activity task failed” 2/2. Cause remains unverified; this is not a universal length cutoff.",
+          "tested_with": "Video file: OGV 8592.96 s (~143.2 min), 134,655,939 B.",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "Appendix C.3",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "Oversize sample: built-in viewing",
+          "status": "Unsupported",
+          "limit": "Confirmed pre-view rejection: “over the 200 MB a video helper can load”. The ≈200 MB boundary is inferred from this one rejected 248.8 MB sample, not a measured exact threshold. Official attachment allowance is separate.",
+          "tested_with": "Video file: OGV 3252.98 s (~54.2 min), 248,838,630 B.",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "Appendices A.4, C.3",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "Official video attachment allowance",
+          "status": "Supported",
+          "limit": "Official claim: 1 GB per video attachment. Attachment acceptance does not promise understanding; the helper rejected a 248.8 MB OGV.",
+          "tested_with": "Documentation only; contrasted with the 248,838,630 B OGV video file.",
+          "last_tested": "2026-11-06",
+          "evidence": "Docs checked",
+          "source": "§2.2; Appendix C.3",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "Exact usable meeting length",
+          "status": "Unverified",
+          "limit": "Report suggests ~13 to ~39 min as a practical meeting-transcription bracket; exact cutoff and generalisation are unverified. A ~17.3 min mixed-language clip was also readable, without a full transcript guarantee.",
+          "tested_with": "Video file: OGV 776.64 s (~12.9 min), 59,414,918 B; Theora 400×300 + Vorbis. Also 39.3 min OGV and 17.3 min WebM.",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "Appendices C.2–C.3",
+          "how_to_verify": "Test matched, licensed meeting videos between successful and failing durations while controlling size.",
+          "updated": true
+        },
+        {
+          "capability": "Cause of Activity task failed",
+          "status": "Unverified",
+          "limit": "39 min (185.7 MB) and 143 min (134.7 MB) each failed 2/2. Length, size and timeout explanations are hypotheses, not findings.",
+          "tested_with": "Video files: 39.3 min and 143.2 min OGV; parallel attempts and solo retries.",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "Unverified list; Appendix C.3",
+          "how_to_verify": "Vary duration and bitrate separately on matched video samples; repeat serial runs.",
+          "updated": false
+        },
+        {
+          "capability": "Transcription accuracy, meetings / missing official records",
+          "status": "Unverified",
+          "limit": "No official verbatim transcripts found for the 13/39/81/143 min meetings; meeting transcription accuracy is unverified. VA 54 min and Transportation 164 min have CHRG records, but those do not validate the other meetings.",
+          "tested_with": "Video files: 13/39/81/143 min OGV; records search, not a ground-truth accuracy test.",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "Not found list; Appendix C.3",
+          "how_to_verify": "Locate the matching official verbatim records and compare timestamped video transcripts.",
+          "updated": true
+        },
+        {
+          "capability": "13 min diarization and vote-summary accuracy",
+          "status": "Unverified",
+          "limit": "5 named/roled speakers and a vote summary were produced; accuracy against the official record is not checked.",
+          "tested_with": "Video file: 776.64 s OGV meeting; official transcript not found.",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "Unverified list; Appendix C.3",
+          "how_to_verify": "Obtain the matching official record and score speaker turns and vote summaries.",
+          "updated": false
+        },
+        {
+          "capability": "Mixed Chinese-English accuracy",
+          "status": "Unverified",
+          "limit": "No reference transcript, so verbatim accuracy is unverified.",
+          "tested_with": "Video file: WebM 1037.19 s (~17.3 min), 21,909,283 B; VP9 854×480 + Opus.",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "Appendix C.2; Unverified list",
+          "how_to_verify": "Find an independent reference transcript and compare the mixed-language video verbatim.",
+          "updated": false
+        },
+        {
+          "capability": "Full-sentence Chinese↔English switching",
+          "status": "Unverified",
+          "limit": "No qualifying sample found: a single speaker switching whole sentences, freely licensed and with a reference transcript. No synthetic sample was made.",
+          "tested_with": "No qualifying video or pure audio sample; existing 17.3 min WebM contains intra-sentence terms only.",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "Appendices A.4, C.2; Not found list",
+          "how_to_verify": "Find a licensed full-sentence-switching video with a reference transcript, then test it.",
+          "updated": false
+        },
+        {
+          "capability": "en-twinkle-little-star.webm",
+          "status": "Unverified",
+          "limit": "Downloaded but not tested.",
+          "tested_with": "Untested video file: WebM VP8/Vorbis, 34.26 s, 19,207,501 B, 1280×720.",
+          "last_tested": "Not tested",
+          "evidence": "Not tested",
+          "source": "Appendices A.1, B; Unverified list",
+          "how_to_verify": "Run the native video viewer and compare its transcript and visual description to a reference.",
+          "updated": false
+        },
+        {
+          "capability": "Tested video containers",
+          "status": "Supported",
+          "limit": "OGV (Theora/Vorbis) and WebM (VP9/Opus) were readable on the short samples. MP4 generated outputs were viewed for motion, but their audio perception was inconsistent. This is not an exhaustive supported-format list.",
+          "tested_with": "Video files: OGV 14.68 s / 1280×720 (Theora/Vorbis); WebM 40.86 s / 1920×1080 (VP9/Opus). Generated MP4 6.04 s and 8.04 s.",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "Appendices A, B, C",
+          "how_to_verify": "",
+          "updated": true
+        }
+      ]
+    },
+    {
+      "id": "audio-understanding",
+      "title": "Audio understanding",
+      "key_limit": "MP3 / OGG / OGA / M4A reading failed.",
+      "note": "Voice-chat transcripts and dictation belong here because report §§2.3–2.4 describe live speech input and chat transcripts, not uploaded recording files. Officially documented features below were not replayed as file tests.",
+      "rows": [
+        {
+          "capability": "Pure audio files: MP3 / OGG / OGA / M4A",
+          "status": "Unsupported",
+          "limit": "Confirmed “Failed to read attachment” for these formats; Read also reports a binary error on MP3. This failure does not describe speech embedded in video.",
+          "tested_with": "Pure audio files: MP3 36.19 / 71.05 / 172.36 s; OGG 7.31 s; OGA 35.82 s; M4A/AAC 103.23 s / 883,914 B.",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "§2.3; Appendices A.1, B, C.1",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "Official audio attachment allowance",
+          "status": "Supported",
+          "limit": "Official claim: 250 MB per audio file. Upload allowance is not a guarantee of native reading or transcription.",
+          "tested_with": "Documentation only; failed pure audio samples are much smaller than 250 MB.",
+          "last_tested": "2026-11-06",
+          "evidence": "Docs checked",
+          "source": "§2.3",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "Pure audio usable duration limit",
+          "status": "Unverified",
+          "limit": "No usable duration threshold established because the tested pure audio formats failed attachment reading. Do not reuse video-duration results as audio evidence.",
+          "tested_with": "Pure audio files: short MP3/OGG/OGA/M4A failed; no successful duration probe.",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "§2.3; Appendices B, C.1",
+          "how_to_verify": "First establish a readable pure audio format, then test matched files at increasing durations.",
+          "updated": true
+        },
+        {
+          "capability": "Long MP3 meeting samples",
+          "status": "Unverified",
+          "limit": "54 min and 164 min MP3 files were downloaded, but not tested with native reading. MP3 format failures on shorter files are not direct tests of these recordings.",
+          "tested_with": "Untested pure audio files: MP3 3253.01 s / 39,036,928 B; MP3 9838.13 s / 78,706,176 B.",
+          "last_tested": "Not tested",
+          "evidence": "Not tested",
+          "source": "Appendix A.4; Appendix C.3",
+          "how_to_verify": "Run native reading separately on each original pure audio file; record the outcome.",
+          "updated": true
+        },
+        {
+          "capability": "Dictation and voice-chat transcripts",
+          "status": "Supported",
+          "limit": "Officially documented: live dictation writes into the composer; voice chat offers Show transcript and a full transcript after the call. Not a path for uploading old recordings.",
+          "tested_with": "Live speech / voice-chat workflow; documentation only, no pure audio file test.",
+          "last_tested": "2026-11-06",
+          "evidence": "Docs checked",
+          "source": "§§2.3–2.4; §3",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "Full audio sub-format list / mixed-language guarantee",
+          "status": "Unverified",
+          "limit": "No complete Bot audio sub-format list or specific mixed Chinese-English product guarantee found. The video mixed-language test is not a pure audio guarantee.",
+          "tested_with": "Documentation search; no exhaustive pure audio format test.",
+          "last_tested": "2026-11-06",
+          "evidence": "Docs checked",
+          "source": "Not found list",
+          "how_to_verify": "Find Bot-specific format and language guarantees, then verify with pure audio samples.",
+          "updated": false
+        },
+        {
+          "capability": "Release note: uploaded MP3/M4A → transcript + summary",
+          "status": "Unverified",
+          "limit": "No Bot-specific release note found; missing documentation is not confirmation that no future path exists.",
+          "tested_with": "Documentation search; existing pure audio MP3/M4A samples failed.",
+          "last_tested": "2026-11-06",
+          "evidence": "Docs checked",
+          "source": "Not found list",
+          "how_to_verify": "Locate a Bot-specific release note and test its documented upload workflow.",
+          "updated": false
+        },
+        {
+          "capability": "Public video matching Children’s Hour M4A",
+          "status": "Unverified",
+          "limit": "No public video with exactly the same text was found, so no matched video-versus-audio comparison exists.",
+          "tested_with": "Pure audio file M4A/AAC 103.23 s; matching video not found.",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "Not found list; Appendix A.4",
+          "how_to_verify": "Find a licensed same-text video and compare native reading against the M4A result.",
+          "updated": false
+        }
+      ]
+    },
+    {
+      "id": "image-understanding",
+      "title": "Image understanding",
+      "key_limit": "25 MB per image; 200 MB per message (official).",
+      "note": "",
+      "rows": [
+        {
+          "capability": "Uploaded / local image understanding",
+          "status": "Supported",
+          "limit": "Read returned a full visual description of the red apple, white background, centred composition and highlights; native vision, not scripted OCR.",
+          "tested_with": "Image: test-apple-16x9.jpg, JPEG 1280×720, about 91 KB.",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "§2.1; §1.1",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "Image attachment size allowances",
+          "status": "Supported",
+          "limit": "Official claim: each image 25 MB; combined images 200 MB per message. Boundary-size tests were not performed.",
+          "tested_with": "Documentation only; tested image was about 91 KB JPEG.",
+          "last_tested": "2026-11-06",
+          "evidence": "Docs checked",
+          "source": "§2.1",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "HEIC photographs",
+          "status": "Supported",
+          "limit": "Official changelog says HEIC is shown as an image rather than a generic attachment. Not a measured format-accuracy claim.",
+          "tested_with": "Documentation only; no HEIC image tested.",
+          "last_tested": "2026-11-06",
+          "evidence": "Docs checked",
+          "source": "§3",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "Screenshots",
+          "status": "Supported",
+          "limit": "Officially documented as image attachments for understanding. Taking a screenshot is the execution layer, not another generation model.",
+          "tested_with": "Documentation only; no separate screenshot-understanding benchmark.",
+          "last_tested": "2026-11-06",
+          "evidence": "Docs checked",
+          "source": "§3",
+          "how_to_verify": "",
+          "updated": true
+        }
+      ]
+    },
+    {
+      "id": "video-generation",
+      "title": "Video generation",
+      "key_limit": "1–15 s; 1080p limited to two modes.",
+      "note": "Observed freezing is a confirmed defect, not a universal lack of generation support. Its cause is tracked separately as Unverified. Sample counts combine direct tests and relayed observations.",
+      "rows": [
+        {
+          "capability": "GenerateVideo parameters",
+          "status": "Supported",
+          "limit": "1–15 s (default 6); 480p default / 720p / 1080p. 1080p only text-to-video and image-to-video without last_frame, keyframes or reference images. MP4; tested 6 s 480p 16:9 → 848×480, H.264, 24 fps.",
+          "tested_with": "Generated outputs: apple MP4 6.04 s / ~1.19 MB; guitar and beach MP4 8.04 s / 5,585,936 and 5,502,180 B. Tool-schema inspection.",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "§1.2",
+          "how_to_verify": "",
+          "updated": false
+        },
+        {
+          "capability": "Video aspect ratios and image inputs",
+          "status": "Supported",
+          "limit": "7 ratios: 1:1, 16:9, 9:16, 4:3, 3:4, 3:2, 2:3. JPEG/PNG/WebP image inputs total about 35 MB. Unlike GenerateImage, which exposes 5 ratios.",
+          "tested_with": "Tool schema and documentation; generated output tested at 16:9 / 480p.",
+          "last_tested": "2026-11-06",
+          "evidence": "Schema / docs checked",
+          "source": "§1.2",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "Generation modes",
+          "status": "Supported",
+          "limit": "Officially supports description, first image, first/last frames (same image can loop), up to 14 reference images and up to 4 timed keyframes. Not every mode was tested.",
+          "tested_with": "Tool schema and documentation; generated MP4 text-to-video 6 s / 8 s tests only.",
+          "last_tested": "2026-11-06",
+          "evidence": "Schema / docs checked",
+          "source": "§1.2",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "GenerateVideo audio track",
+          "status": "Supported",
+          "limit": "ffprobe confirms AAC tracks. Report C.4.2 enumerates 5 MP4 files; phase2 notes say 6/6 using an existing-sample scope. This denominator mismatch is unresolved. Apple audio: 48 kHz stereo. Track presence does not prove audibility.",
+          "tested_with": "Generated outputs: apple MP4 6.04 s / ~1.19 MB; guitar and beach MP4 8.04 s / 5,585,936 and 5,502,180 B. Two generated frog MP4 outputs, each 5.04 s.",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "Appendix C.4.2; tests/phase2-builtin-results.md",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "GenerateVideo sound is audible",
+          "status": "Unverified",
+          "limit": "Viewers disagree: guitar/voice/drone descriptions may echo review prompts or be hallucinations; all 4 frog checks reported no audio access. Human hearing is needed to establish music, voice or sound.",
+          "tested_with": "Generated outputs: apple MP4 6.04 s / ~1.19 MB; guitar and beach MP4 8.04 s / 5,585,936 and 5,502,180 B. Two frog MP4 outputs 5.04 s each.",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "Appendix C.4.4",
+          "how_to_verify": "Listen to the original generated files with a human ear; record sound type and audibility.",
+          "updated": false
+        },
+        {
+          "capability": "Continuous motion is possible",
+          "status": "Supported",
+          "limit": "Mixed evidence: 6/8 frozen, 2/8 moving. Secretary directly tested apple 6 s, guitar 8 s, beach 8 s (3/3 frozen). Relayed beach 15 s ×3 all froze; two 5 s frog clips moved, also checked by Secretary. This is not a random-sample failure rate. Frog defects included jump cuts, leg deformation, extra limbs and colour shifts.",
+          "tested_with": "Generated MP4 outputs: Secretary 3 clips; relayed beach 3 clips; frog 2 clips (480p).",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "Appendix C.4.3",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "Why freezing happens / higher-resolution behaviour",
+          "status": "Unverified",
+          "limit": "Length (5 vs 6/8/15 s), motion prompt, reference image and scene remain unproven factors. Whether 720p/1080p or image-to-video also freezes is unverified.",
+          "tested_with": "Generated MP4 outputs: mixed-source 8 clips; no controlled 720p/1080p comparison.",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "Unverified list; Appendix C.4.3",
+          "how_to_verify": "Run a controlled matrix across duration, resolution, mode and scene with repeat trials.",
+          "updated": true
+        },
+        {
+          "capability": "1080p in every mode and plan",
+          "status": "Unverified",
+          "limit": "No official step-by-step all-mode/all-plan confirmation found. Schema restricts 1080p to text-to-video and image-to-video; Bot prose emphasises 480p/720p.",
+          "tested_with": "Schema / documentation search, not an all-plan generated-output test.",
+          "last_tested": "2026-11-06",
+          "evidence": "Docs checked",
+          "source": "Not found list; §1.2",
+          "how_to_verify": "Check current Bot mode/plan documentation and test each permitted combination.",
+          "updated": false
+        },
+        {
+          "capability": "Precise graphics / text timing",
+          "status": "Unsupported",
+          "limit": "Confirmed tool-use restriction in official docs: not for motion graphics, title cards, slideshows, product demos, charts or exact text/brand timing. Not a claim that a specific render attempt failed.",
+          "tested_with": "Official tool guidance, not a generated-output benchmark.",
+          "last_tested": "2026-11-06",
+          "evidence": "Docs checked",
+          "source": "§1.2",
+          "how_to_verify": "",
+          "updated": true
+        }
+      ]
+    },
+    {
+      "id": "audio-generation",
+      "title": "Audio generation",
+      "key_limit": "No standalone music tool; voice memos are separate.",
+      "note": "Voice memos are placed here because report §3 defines them as playable spoken Bot replies with expandable transcripts. They are NOT generic music generation or transcription of uploaded audio.",
+      "rows": [
+        {
+          "capability": "Voice memos / spoken replies",
+          "status": "Supported",
+          "limit": "Officially documented playable Bot voice replies with expandable transcripts and word-level highlighting. This is a supported speech workflow, not an independent arbitrary-audio composition API.",
+          "tested_with": "Documentation only: spoken Bot reply / voice-memo output; no file sample in this report.",
+          "last_tested": "2026-11-06",
+          "evidence": "Docs checked",
+          "source": "§3; capability table",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "Standalone music / song generation tool",
+          "status": "Unsupported",
+          "limit": "Confirmed absent from the inspected built-in tool list: no GenerateMusic / Song tool. Separate from voice replies. Full-song product page was merely not found and is tracked separately.",
+          "tested_with": "Built-in tool-list inspection; no standalone generated audio output.",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "§1.3; capability table",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "Video-embedded soundtrack route",
+          "status": "Supported",
+          "limit": "Available route is GenerateVideo: AAC track presence verified; official claim of same-pass soundtrack, ambience and dialogue. Audible content remains Unverified in the Video generation card. No standalone arbitrary audio/music tool is documented by this report.",
+          "tested_with": "Generated MP4 outputs (not pure audio): apple 6.04 s, guitar/beach 8.04 s, frogs 5.04 s.",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "§1.3; Appendix C.4",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "Full-song product page",
+          "status": "Unverified",
+          "limit": "No xAI full-song product page found. A missing page is not proof of product absence.",
+          "tested_with": "Documentation search; no standalone generated song tested.",
+          "last_tested": "2026-11-06",
+          "evidence": "Docs checked",
+          "source": "§1.3; Not found list",
+          "how_to_verify": "Locate an official current full-song product page and verify that it applies to Bot.",
+          "updated": true
+        },
+        {
+          "capability": "External music backend (e.g. Suno)",
+          "status": "Unverified",
+          "limit": "Public intent is mentioned, but rollout and whether an external backend is connected for this account are unverified.",
+          "tested_with": "No generated audio sample or backend-access test.",
+          "last_tested": "Not tested",
+          "evidence": "Not tested",
+          "source": "§1.3; Unverified list",
+          "how_to_verify": "Check account-specific connector/tool availability and verify with an explicitly requested sample.",
+          "updated": false
+        }
+      ]
+    },
+    {
+      "id": "image-generation",
+      "title": "Image generation",
+      "key_limit": "5 ratios; no n, resolution or quality parameter.",
+      "note": "",
+      "rows": [
+        {
+          "capability": "GenerateImage and reference-image editing",
+          "status": "Supported",
+          "limit": "Works, including watercolour reference-image editing. Tested outputs 1280×720 (16:9); only generates when explicitly requested.",
+          "tested_with": "Generated images: JPEG apple about 91 KB; edited watercolour JPEG about 264 KB, both 1280×720.",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "§1.1",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "Image aspect ratios: 5, not video’s 7",
+          "status": "Supported",
+          "limit": "Schema exposes 1:1, 4:3, 3:4, 16:9, 9:16. The report’s 7-ratio list belongs to GenerateVideo, not GenerateImage; developer API offers more options and is not the Bot schema.",
+          "tested_with": "GenerateImage schema; generated JPEG output tested at 16:9.",
+          "last_tested": "2026-11-06",
+          "evidence": "Schema / test",
+          "source": "§1.1; §1.2",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "GenerateImage n / resolution / quality parameters",
+          "status": "Unsupported",
+          "limit": "Confirmed absent from the Bot tool schema. These belong to the Imagine developer API and must not be presented as Bot parameters.",
+          "tested_with": "Tool parameter-list inspection; generated images use only exposed Bot parameters.",
+          "last_tested": "2026-11-06",
+          "evidence": "Tested",
+          "source": "§1.1; Not found list",
+          "how_to_verify": "",
+          "updated": false
+        },
+        {
+          "capability": "Charts / plots / tables via GenerateImage",
+          "status": "Unsupported",
+          "limit": "Explicit official tool-use restriction: GenerateImage is not for charts, plots or tables; use a Page instead. This is a documented scope restriction, not a failed sample render.",
+          "tested_with": "Official Bot documentation; no generated chart benchmark.",
+          "last_tested": "2026-11-06",
+          "evidence": "Docs checked",
+          "source": "§1.1",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "Visible watermark on Bot-generated images",
+          "status": "Unverified",
+          "limit": "Consumer FAQ says grok.com Imagine has a watermark; Bot documentation does not repeat that claim. Whether every Bot image has the same visible watermark is unverified.",
+          "tested_with": "Generated JPEG samples exist; no watermark-specific verification was recorded.",
+          "last_tested": "Not tested",
+          "evidence": "Not tested",
+          "source": "Unverified list; §1.4",
+          "how_to_verify": "Inspect original Bot outputs visually and obtain a Bot-specific watermark statement.",
+          "updated": false
+        }
+      ]
+    },
+    {
+      "id": "other-limits",
+      "title": "其他限制 (Other limits)",
+      "key_limit": "Cross-cutting platform, files and policy.",
+      "note": "These are platform and documentation boundaries, not additional modality test results. Supported can mean officially documented; the evidence label distinguishes documentation from executed tests. “Not found” stays Unverified unless a tool schema or direct failure confirms absence.",
+      "rows": [
+        {
+          "capability": "PDF / Word / Excel / PPT and other file inputs",
+          "status": "Supported",
+          "limit": "Official common inputs include PDF, Word, Excel, PPT, CSV, JSON, code, HTML, email and notebooks; documents allow 250 MB. PDF-to-text is supported by Read. Unusual formats may need PDF/CSV/text/image conversion.",
+          "tested_with": "Documentation / Read tool description only; no document benchmark files in this report.",
+          "last_tested": "2026-11-06",
+          "evidence": "Docs checked",
+          "source": "§3; capability table",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "Pages / Canvas",
+          "status": "Supported",
+          "limit": "Officially supports text, tables, charts, controls, dashboards, Library and sharing. Enterprise teams not yet supported; desktop ≥0.60.0 and mobile ≥1.14.0.",
+          "tested_with": "Documentation only; no Page output tested here.",
+          "last_tested": "2026-11-06",
+          "evidence": "Docs checked",
+          "source": "Capability table; §3",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "Slide decks / PPTX / Google Slides",
+          "status": "Supported",
+          "limit": "Official changelog (2026-10-07) says decks can be created collaboratively and delivered as PowerPoint or Google Slides.",
+          "tested_with": "Documentation only; no slide output tested here.",
+          "last_tested": "2026-11-06",
+          "evidence": "Docs checked",
+          "source": "Capability table; §3",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "Meet / Zoom / Teams joining in this session",
+          "status": "Unsupported",
+          "limit": "Confirmed session-skill restriction: this conversation cannot join. Meeting terms mention the use case but are not a guarantee of client access or uploaded-recording understanding.",
+          "tested_with": "Session meetings-skill constraint; no video or pure audio file test.",
+          "last_tested": "2026-11-06",
+          "evidence": "Skill checked",
+          "source": "§§2.3–2.4; §3",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "PSTN / third-party phone calling",
+          "status": "Unverified",
+          "limit": "No native PSTN capability found in this report; do not infer universal absence from the search result.",
+          "tested_with": "Documentation / skill search; no phone-call test.",
+          "last_tested": "2026-11-06",
+          "evidence": "Docs checked",
+          "source": "§3",
+          "how_to_verify": "Find a supported native calling surface and verify it without conflating voice chat with PSTN.",
+          "updated": true
+        },
+        {
+          "capability": "Teach by demonstration",
+          "status": "Supported",
+          "limit": "Platform workflow records teaching on the Bot’s own computer and saves a skill; not a generic meeting-minutes promise.",
+          "tested_with": "Documentation / skill only; no new demonstration recording tested.",
+          "last_tested": "2026-11-06",
+          "evidence": "Docs checked",
+          "source": "§2.4; §3",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "Cloud drive and email file transfer",
+          "status": "Supported",
+          "limit": "UploadFile / DownloadFile work with connected Drive, OneDrive, SharePoint, Gmail or Outlook. Requires the relevant connection.",
+          "tested_with": "Documentation only; no file transfer performed for this report.",
+          "last_tested": "2026-11-06",
+          "evidence": "Docs checked",
+          "source": "§3",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "Cloud Agent artifact return",
+          "status": "Supported",
+          "limit": "Official capability to return referenced image/video artifacts to a conversation; cloud agents were excluded from this research.",
+          "tested_with": "Documentation only; no cloud agent used or output tested.",
+          "last_tested": "2026-11-06",
+          "evidence": "Docs checked",
+          "source": "§3",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "Shopping-card photos",
+          "status": "Supported",
+          "limit": "Official changelog describes product-card photo carousels; these are not Imagine image generation.",
+          "tested_with": "Documentation only; no product-image test.",
+          "last_tested": "2026-11-06",
+          "evidence": "Docs checked",
+          "source": "§3",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "Usage pool / admin controls",
+          "status": "Supported",
+          "limit": "Official claim: Bot, Chat, Imagine and Voice share a weekly usage pool under The X Subscription (FAQ says since 2026-06). Team/privacy/admin settings may disable image/video creation; busy periods can defer requests.",
+          "tested_with": "Documentation only; no quota exhaustion or account-settings test.",
+          "last_tested": "2026-11-06",
+          "evidence": "Docs checked",
+          "source": "§1.4; §1.1",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "Bot daily image/video fixed quota table",
+          "status": "Unverified",
+          "limit": "Not found; rely on Usage-page percentages, not invented daily image counts or video seconds. Consumer plan claims cannot be copied to Bot uncritically.",
+          "tested_with": "Documentation search; no quota benchmark.",
+          "last_tested": "2026-11-06",
+          "evidence": "Docs checked",
+          "source": "Not found list; §1.4",
+          "how_to_verify": "Locate a current Bot-specific quota table or confirm the account’s Usage-page policy.",
+          "updated": false
+        },
+        {
+          "capability": "Content policy and consumer watermark rules",
+          "status": "Supported",
+          "limit": "Officially documented: named trademarked characters, brands and real people can be blocked; consumer Imagine prohibits watermark removal. This does not establish an identical visible watermark on all Bot outputs.",
+          "tested_with": "Official documentation only; no policy-boundary generation tests.",
+          "last_tested": "2026-11-06",
+          "evidence": "Docs checked",
+          "source": "§1.1; §1.4",
+          "how_to_verify": "",
+          "updated": true
+        },
+        {
+          "capability": "Product boundary / native scope",
+          "status": "Supported",
+          "limit": "Bot is not grok.com or the full Imagine REST API. Local-script/model processing is excluded here; ffprobe was used only for metadata, never to interpret media. Developer API details are comparison context, not extra Bot capabilities.",
+          "tested_with": "Research scope and schema comparison; no extra media test.",
+          "last_tested": "2026-11-06",
+          "evidence": "Scope / schema checked",
+          "source": "Product boundaries; §1.1; §1.2",
+          "how_to_verify": "",
+          "updated": true
+        }
+      ]
+    }
+  ],
+  "revisions": [
+    {
+      "version": "v1.0",
+      "date": "2026-11-07",
+      "note": "Initial page built from the source report (round 2, Appendix C). Every figure checked against the report; where the brief and report differed, the report was followed."
+    },
+    {
+      "version": "v1.1",
+      "date": "2026-11-07",
+      "note": "Six modality cards plus Other limits; video/audio understanding split; unverified/not-found entries reclassified into their cards; overview tiles; Tested with column; how-to-verify notes; data-driven build. This approved v1.1 migration is retained; future minor edits use 1.x and structural changes use 2.0."
+    }
+  ]
+}
